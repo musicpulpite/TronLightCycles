@@ -1,0 +1,7 @@
+#tronGame, #svg {
+  transform: perspective(200px) rotateX(15deg);
+}
+
+#player, #enemy_1, #enemy_2, #enemy_3 {
+  /* transform: perspective(200px) rotateY(45deg); */
+}

@@ -96,33 +96,34 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initBoard", function() { return initBoard; });
-const initBoard = (canvas, ctx) => {
+const initBoard = (canvas, ctx, ctxOverlay) => {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
     ctx.fillRect(0, 0, 600, 600);
 
     drawGrid(ctx, canvas.height, canvas.width, 25);
+    // drawGrid(ctxOverlay, canvas.height, canvas.width, 25);
 }
 
 const drawGrid = (ctx, w, h, step) => {
   ctx.lineWidth = 0.8;
   ctx.strokeStyle = 'rgba(0,255,255, 1)';
 
-  for (let i = 0; i <= w; i += step) {
+  for (let i = step; i < w; i += step) {
     ctx.beginPath();
     ctx.moveTo(i, 0);
     ctx.lineTo(i, h);
     ctx.stroke();
   }
 
-  for (let j = 0; j <= h; j += step) {
+  for (let j = step; j < h; j += step) {
     ctx.beginPath();
     ctx.moveTo(0, j);
     ctx.lineTo(w, j);
     ctx.stroke();
   }
 
-  for (let i = 0; i <= w; i += step) {
-    for (let j = 0; j <= h; j += step) {
+  for (let i = step; i < w; i += step) {
+    for (let j = step; j < h; j += step) {
       ctx.beginPath();
       ctx.arc(i, j, (step / 7.5), 0, 2*Math.PI);
       ctx.stroke();
@@ -184,15 +185,44 @@ class ComputerBike {
   }
 
   handleVel() {
-    const prob = Math.random();
+    const RIGHT_TURNS = {
+      "0,1": [-1, 0],
+      "-1,0": [0, -1],
+      "0,-1": [1, 0],
+      "1,0": [0, 1],};
 
-    if (prob < 0.005) {
-      this.vel = this.vel.reverse();
-      this.vel[0] = -1*this.vel[0];
-      this.vel[1] = -1*this.vel[1];
-    } else if (prob < 0.01) {
-      this.vel = this.vel.reverse();
+    const LEFT_TURNS = {
+      "0,1": [1, 0],
+      "1,0": [0, -1],
+      "0,-1": [-1, 0],
+      "-1,0": [0, 1],};
+
+    let dist = this.calcDist();
+    let prob_thresh = 1 / (dist + 1);
+    let prob = Math.random();
+
+    if (prob < prob_thresh / 2) {
+      this.vel = LEFT_TURNS[String(this.vel)];
+    } else if (prob < prob_thresh) {
+      this.vel = RIGHT_TURNS[String(this.vel)];
     }
+  }
+
+  calcDist() {
+    let dist = 1;
+
+    while (dist < 600) {
+      let pos_temp = [(this.x + dist*this.vel[0]), (this.y + dist*this.vel[1])];
+
+      if (this.prev_points[pos_temp]) {
+        return dist;
+      } else if ([0, 600].includes(pos_temp[0]) || [0, 600].includes(pos_temp[1])) {
+        return dist;
+      } else {
+        dist++;
+      }
+    }
+
   }
 
   clearPositions() {
@@ -227,9 +257,12 @@ __webpack_require__.r(__webpack_exports__);
 
 window.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('tronGame');
-  if (canvas.getContext) {
+  const canvasOverlay = document.getElementById('tronGameOverlay');
+
+  if (canvas.getContext && canvasOverlay.getContext) {
     let ctx = canvas.getContext('2d');
-    Object(_board_js__WEBPACK_IMPORTED_MODULE_0__["initBoard"])(canvas, ctx);
+    let ctxOverlay = canvasOverlay.getContext('2d');
+    Object(_board_js__WEBPACK_IMPORTED_MODULE_0__["initBoard"])(canvas, ctx, ctxOverlay);
 
     const prev_points = {};
     const player = new _player_bike_js__WEBPACK_IMPORTED_MODULE_1__["default"](prev_points);
@@ -237,6 +270,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const enemy_1 = new _computer_bike_js__WEBPACK_IMPORTED_MODULE_2__["default"](enemy_1_poly, [-1, 0], prev_points);
     const enemy_2_poly = document.getElementById('enemy_2');
     const enemy_2 = new _computer_bike_js__WEBPACK_IMPORTED_MODULE_2__["default"](enemy_2_poly, [0, 1], prev_points);
+    const enemy_3_poly = document.getElementById('enemy_3');
+    const enemy_3 = new _computer_bike_js__WEBPACK_IMPORTED_MODULE_2__["default"](enemy_3_poly, [0, -1], prev_points);
     player.move();
   }
 })
