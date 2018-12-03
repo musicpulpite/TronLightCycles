@@ -1,7 +1,10 @@
+const path = require('path');
+
 module.exports = {
   entry: "./lib/light_cycles.js",
   output: {
-  	filename: "./lib/bundle.js"
+    path: path.resolve(__dirname, 'lib'),
+  	filename: "bundle.js"
   },
   devtool: 'source-map',
 };

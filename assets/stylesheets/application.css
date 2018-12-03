@@ -1,7 +1,49 @@
-#tronGame, #svg {
-  transform: perspective(200px) rotateX(15deg);
+body {
+  position: relative;
+  overflow: hidden;
+
+  margin: 0;
 }
 
-#player, #enemy_1, #enemy_2, #enemy_3 {
-  /* transform: perspective(200px) rotateY(45deg); */
+image {
+  width: 100%;
+  height: auto;
+}
+
+canvas {
+  position: absolute;
+  top: 0px;
+  left: 30%;
+}
+
+svg {
+  position: absolute;
+  top: 0;
+  left: 30%;
+}
+
+#start, #paused {
+  display: block;
+  box-sizing: border-box;
+
+  position: absolute;
+  top: 30%;
+  left: calc(30% + 300px - 163px);
+
+  color: rgba(0,255,255, 1);
+  font-size: 100px;
+
+  transform: perspective(200px) rotateX(-15deg);
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.shroud {
+  opacity: 0.75;
+}
+
+#tronGame, #svg {
+  transform: perspective(200px) rotateX(15deg);
 }
