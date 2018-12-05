@@ -29,6 +29,7 @@ svg {
   position: absolute;
   top: 30%;
   left: calc(30% + 300px - 163px);
+  z-index: 1;
 
   color: rgba(0,255,255, 1);
   font-size: 100px;
