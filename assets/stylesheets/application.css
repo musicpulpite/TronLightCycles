@@ -2,36 +2,37 @@ body {
   position: relative;
   overflow: hidden;
 
-  margin: 0;
-}
+  width: 100vw;
+  height: 100vh;
 
-image {
-  width: 100%;
-  height: auto;
+  margin: 0;
+
+  color: rgba(0,255,255, 1);
+
+  background-image: url('../images/background.jpg');
 }
 
 canvas {
   position: absolute;
   top: 0px;
-  left: 30%;
+  left: calc(50% - 300px);
 }
 
 svg {
   position: absolute;
   top: 0;
-  left: 30%;
+  left: calc(50% - 300px);
 }
 
-#start, #paused {
+#start, #paused, #game_over {
   display: block;
   box-sizing: border-box;
 
   position: absolute;
   top: 30%;
-  left: calc(30% + 300px - 163px);
+  left: calc(50% - 150px);
   z-index: 1;
 
-  color: rgba(0,255,255, 1);
   font-size: 100px;
 
   transform: perspective(200px) rotateX(-15deg);
@@ -47,4 +48,25 @@ svg {
 
 #tronGame, #svg {
   transform: perspective(200px) rotateX(15deg);
+}
+
+#directions {
+  position: absolute;
+  top: 30%;
+  right: 5%;
+
+  width: 200px;
+  height: 150px;
+
+  font-size: 20px;
+}
+
+#directions img[alt="WASD"], img[alt="Arrow"] {
+  width: 75px;
+  height: auto;
+}
+
+#directions img[alt="Space"] {
+  width: 150px;
+  height: auto;
 }

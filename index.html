@@ -7,12 +7,11 @@
     <script src="./lib/bundle.js"></script>
   </head>
   <body>
-    <img src="./assets/images/background.jpg" alt="Background">
-
     <canvas id="tronGame" width="600" height="600"></canvas>
 
     <span id="start">START</span>
     <span id="paused">PAUSED</span>
+    <span id="game_over">GAME</br>OVER</span>
 
     <svg height="600" width="600" id="svg">
 
@@ -25,6 +24,18 @@
       <polyline id="enemy_3" points="300,300"
         style="fill:none;stroke:#EB3D3D;stroke-width:5"/>
     </svg>
+
+    <div id="directions">
+      <h3>Controls</h3>
+      <span>
+        <img src="./assets/images/WASD.png" alt="WASD">
+        <img src="./assets/images/arrow_keys.png" alt="Arrow">
+      </span>
+      </br>
+      <span>
+        <img src="./assets/images/space_bar.png" alt="Space">
+      </span>
+    </div>
 
   </body>
 </html>
