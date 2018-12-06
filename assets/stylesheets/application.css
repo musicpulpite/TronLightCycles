@@ -24,7 +24,7 @@ svg {
   left: calc(50% - 300px);
 }
 
-#start, #paused, #game_over {
+#start, #paused, #game_over, #victory {
   display: block;
   box-sizing: border-box;
 
@@ -50,6 +50,24 @@ svg {
   transform: perspective(200px) rotateX(15deg);
 }
 
+#about {
+  position: absolute;
+  top: 30%;
+  left: 5%;
+
+  width: 200px;
+  height: 150px;
+
+  font-size: 20px;
+}
+
+#logos img {
+  width: 30px;
+  height: auto;
+
+  margin-right: 15px;
+}
+
 #directions {
   position: absolute;
   top: 30%;
@@ -69,4 +87,13 @@ svg {
 #directions img[alt="Space"] {
   width: 150px;
   height: auto;
+}
+
+#source {
+  text-decoration: none;
+  color: white;
+
+  font-size: 20px;
+
+  border-top: 1px solid white;
 }
