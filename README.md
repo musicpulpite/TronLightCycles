@@ -6,7 +6,7 @@ Target Example:
 ![Example Image](https://i1.wp.com/www.theunheardnerd.com/wp-content/uploads/2016/04/Encom-Banner.png?fit=940%2C441&resize=350%2C200)
 
 My Version:  
-![Screenshot]
+![Screenshot](tron_game_screenshot.png)
 
 ##  Features To Note  
 The background playing surface is drawn using HTML Canvas. It is a static image that is drawn once during the initialization of the game class that manages all of the game logic.  
@@ -44,9 +44,20 @@ There are 3 AI opponents that can somewhat intelligently maneuver the playing su
 The current implementation has each AI picking between turning left and turning right with equal probability, but the probability that the bike makes a turn rather than continuing to go straight scales with the calculated distance to the next obstacle on its current path (either another _light cycle_ trail or the boundary wall).  
 
 The function that dictates this behavior looks like this:  
-
+![turn probability formula](Screen Shot 2018-12-12 at 10.56.25 AM (2).png)
 
 And the formula is implemented in my game logic like this:  
+```javascript
+    let dist = this.calcDist();
+    let prob_thresh = 1 / (dist + 1);
+    let prob = Math.random();
+
+    if (prob < prob_thresh / 2) {
+      this.vel = LEFT_TURNS[String(this.vel)];
+    } else if (prob < prob_thresh) {
+      this.vel = RIGHT_TURNS[String(this.vel)];
+    }
+```
 
 ## MVP List  
 1. Functional movement and "trail" drawing
