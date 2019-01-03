@@ -38,6 +38,10 @@ svg {
   transform: perspective(200px) rotateX(-15deg);
 }
 
+#start:hover {
+  cursor: pointer;
+}
+
 .hidden {
   visibility: hidden;
 }
