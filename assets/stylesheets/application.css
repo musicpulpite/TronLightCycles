@@ -93,6 +93,10 @@ svg {
   height: auto;
 }
 
+#mute {
+  width: 60px;
+}
+
 #source {
   text-decoration: none;
   color: white;
