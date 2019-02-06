@@ -1,6 +1,8 @@
 # TronLightCycles   
 
-A Javascript web-game recreating the classic _light cycle_ battle from the movie Tron. The goal of the game is to force your opponent to collide with trail created by your _light cycle_ as it traverses the arena.  
+A Javascript web-game recreating the classic _light cycle_ battle from the movie Tron. The goal of the game is to force your opponent to collide with trail created by your _light cycle_ as it traverses the arena.
+
+[Live Link](https://musicpulpite.github.io/TronLightCycles/)
 
 Target Example:  
 ![Example Image](https://i1.wp.com/www.theunheardnerd.com/wp-content/uploads/2016/04/Encom-Banner.png?fit=940%2C441&resize=350%2C200)
